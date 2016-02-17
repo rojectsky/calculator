@@ -45,4 +45,8 @@ if the input date is invalid,e.g
 ```
 node run 320/04/abc 03/01/2013
 ```
- you will see this error:Wrong Date format(DD/MM/YYYY) : 320/04/abc
+ you will see this error:
+```
+Error: Wrong Date format(DD/MM/YYYY) : 320/04/abc
+```
+
