@@ -12,24 +12,30 @@ module.exports = {
   /**
    * get year object from str
    * @param str
-   * @returns {{year: Number, month: Number, date: Number, leap: boolean, isDateBefore: Function, isMonthBefore: Function}}
+   * @returns {{year: Number, month: Number, date: Number, leap: boolean, isDateBefore: Function, isMonthBefore: Function, isSame: Function}}
    */
   getDate: function (str) {
+    if (str === undefined || str == null) {
+      throw new Error('Please input the date');
+    }
     var date = str.split("/");
     if (date.length != 3) {
       throw new Error('Wrong Date format(DD/MM/YYYY) : ' + str);
     }
     try {
       var d = {
-        year: parseInt(date[2],10),
-        month: parseInt(date[1],10),
-        date: parseInt(date[0],10),
-        leap: exports.leapYear(parseInt(date[2],10)),
+        year: parseInt(date[2], 10),
+        month: parseInt(date[1], 10),
+        date: parseInt(date[0], 10),
+        leap: exports.leapYear(parseInt(date[2], 10)),
         isDateBefore: function (y) {
           return this.year < y.year || (this.year == y.year && this.isMonthBefore(y))
         },
         isMonthBefore: function (y) {
           return this.month < y.month || (this.month == y.month && this.date < y.date);
+        },
+        isSame: function (y) {
+          return this.year == y.year && this.month == y.month && this.date == y.date;
         }
       };
 
@@ -79,11 +85,12 @@ module.exports = {
    * @returns {number}
    */
   calculate: function (str1, str2) {
-    if (str1 === str2) {
-      return 0;
-    }
+
     var end = exports.getDate(str1);
     var start = exports.getDate(str2);
+    if(end.isSame(start)){
+      return 0;
+    }
     //make sure end>start
     if (end.isDateBefore(start)) {
       var temp = end;
@@ -96,29 +103,20 @@ module.exports = {
     days = (end.year - start.year - 1 ) * 365;
     days += exports.countLeapYearsBetween(end.year, start.year);
 
-    var mDays = monthDays;
-    if (end.leap) {
-      mDays = leapMonthDays;
-    }
     // calculate the remaining days of the end year
+    var mDays = end.leap ? leapMonthDays : monthDays;
     for (var i = 0; i < end.month - 1; i++) {
       days += mDays[i];
     }
-    days += end.date;
+    days += end.date - 1;
 
-    mDays = monthDays;
-    if (start.leap) {
-      mDays = leapMonthDays;
-    }
     // calculate the remaining days of the start year
+    mDays = start.leap ? leapMonthDays : monthDays;
     for (i = 11; i > start.month - 1; i--) {
       days += mDays[i];
     }
     days += mDays[start.month - 1] - start.date;
 
-    if (days > 0) {
-      days--;
-    }
     console.log(days);
     return days;
   }
