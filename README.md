@@ -14,10 +14,22 @@ This library will calculate the days between the 2 given days.
 * *git* - Get git <a href="http://git-scm.com/download/mac">from here</a>.
 
 ## Prerequisite packages
-## if you want to run test case please run the below command, this will install the test libraries.
+if you want to run test cases, please run the below command, this will install the test libraries.
 ```
 $ npm install
 ```
+and then
+```
+$ npm test
+```
+
+## Use this module in your project
+```
+var calculator = require("./calculator");
+
+calculator.calculate('01/01/2013', '03/01/2013,)
+```
+
 
 ## Command to run the script
 ```
@@ -28,10 +40,3 @@ if the input date is invalid,e.g
 node run 320/04/abc 03/01/2013
 ```
  you will see this error:Wrong Date format(DD/MM/YYYY) : 320/04/abc
-
-## Uese this module in your project
-```
-var calculator = require("./calculator");
-
-calculator.calculate('01/01/2013', '03/01/2013,)
-```
