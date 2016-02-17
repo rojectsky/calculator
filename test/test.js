@@ -8,6 +8,16 @@ var should = require('chai').should(),
 
 describe('#calculate', function () {
 
+  it('wrong format - undefined | null', function() {
+    expect(function(){
+      getDate(undefined);
+    }).to.throw('Please input the date');
+
+    expect(function(){
+      getDate(null);
+    }).to.throw('Please input the date');
+  });
+
   it('wrong format - invalidate number 1', function() {
     expect(function(){
       getDate('-1/06/1983');

@@ -117,7 +117,6 @@ module.exports = {
     }
     days += mDays[start.month - 1] - start.date;
 
-    console.log(days);
     return days;
   }
 
