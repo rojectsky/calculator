@@ -35,6 +35,12 @@ calculator.calculate('01/01/2013', '03/01/2013,)
 ```
 node run 01/01/2013 03/01/2013
 ```
+you will see the output:
+```
+1
+```
+
+
 if the input date is invalid,e.g
 ```
 node run 320/04/abc 03/01/2013
