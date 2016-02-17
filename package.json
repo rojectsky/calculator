@@ -1,0 +1,26 @@
+{
+  "name": "calculator",
+  "version": "0.0.0",
+  "description": "A DATE CALCULATOR",
+  "main": "calculator",
+  "scripts": {
+    "test": "mocha -R list"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rojectsky/calculator.git"
+  },
+  "keywords": [
+    "calculator"
+  ],
+  "author": "Roject",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rojectsky/calculator/issues"
+  },
+  "homepage": "https://github.com/rojectsky/calculator",
+  "devDependencies": {
+    "mocha": "~2.4.5",
+    "chai": "~3.5.0"
+  }
+}
